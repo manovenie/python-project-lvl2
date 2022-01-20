@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "hexlet-code"
+version = "0.1.0"
+description = "Second python project on Hexlet"
+authors = ["Ilya Dutlov <id@dutlov.ru>"]
+packages = [
+    { include = "gendiff" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pytest = "^6.2.5"
+pytest-cov = "^3.0.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
