@@ -13,14 +13,14 @@ def generate_diff(file_path1, file_path2):
     for key in all_keys:
         if key in intersection_keys:
             if x[key] == y[key]:
-                res += '\t  {}: {}\n'.format(key, x[key])
+                res += '    {}: {}\n'.format(key, x[key])
             else:
-                res += '\t- {}: {}\n'.format(key, x[key])
-                res += '\t+ {}: {}\n'.format(key, y[key])
+                res += '  - {}: {}\n'.format(key, x[key])
+                res += '  + {}: {}\n'.format(key, y[key])
         elif key in deleted_keys:
-            res += '\t- {}: {}\n'.format(key, x[key])
+            res += '  - {}: {}\n'.format(key, x[key])
         elif key in added_keys:
-            res += '\t+ {}: {}\n'.format(key, y[key])
+            res += '  + {}: {}\n'.format(key, y[key])
 
-    res += '}\n'
+    res += '}'
     return res
