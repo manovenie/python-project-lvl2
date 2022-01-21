@@ -6,6 +6,7 @@ dist
 .venv/
 .coverage
 coverage.xml
+.coverage
 .pytest_cache/
 .vim
 .idea
