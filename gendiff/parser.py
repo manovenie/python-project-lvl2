@@ -34,6 +34,7 @@ def open_file(file_path):
         file = f.read()
     return file
 
+
 def parse_file(file_format):
     format = {
         '.json': json.loads,
@@ -41,4 +42,3 @@ def parse_file(file_format):
         '.yml': yaml.safe_load
     }
     return format[file_format.lower()]
-
