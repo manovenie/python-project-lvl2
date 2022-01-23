@@ -3,11 +3,14 @@
 import argparse
 from gendiff.gendiff import generate_diff
 from gendiff.parser import parse_cli_args
+from gendiff.parser import prepare_file
 
 
 def main():
     arguments = parse_cli_args()
-    result = generate_diff(arguments.first_file, arguments.second_file)
+    first_file = prepare_file(arguments.first_file)
+    second_file = prepare_file(arguments.second_file)
+    result = generate_diff(first_file, second_file)
     print(result)
 
 
