@@ -1,10 +1,7 @@
 #!/usr/bin/env python3
-import json
 
 
-def generate_diff(file_path1, file_path2):
-    x = json.load(open(file_path1))
-    y = json.load(open(file_path2))
+def generate_diff(x, y):
     res = '{\n'
     all_keys = sorted(list(x.keys() | y.keys()))
     intersection_keys = x.keys() & y.keys()

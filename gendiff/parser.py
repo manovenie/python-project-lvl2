@@ -20,7 +20,7 @@ def parse_cli_args():
 def prepare_file(file_path):
     file_format = get_format(file_path)
     file = open_file(file_path)
-    open_type = parser(file_format)
+    open_type = parse_file(file_format)
     return open_type(file)
 
 
