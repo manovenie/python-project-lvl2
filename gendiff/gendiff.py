@@ -1,23 +1,23 @@
 #!/usr/bin/env python3
 
 
-def generate_diff(x, y):
-    res = '{\n'
-    all_keys = sorted(list(x.keys() | y.keys()))
-    intersection_keys = x.keys() & y.keys()
-    deleted_keys = x.keys() - y.keys()
-    added_keys = y.keys() - x.keys()
-    for key in all_keys:
-        if key in intersection_keys:
-            if x[key] == y[key]:
-                res += '    {}: {}\n'.format(key, x[key])
-            else:
-                res += '  - {}: {}\n'.format(key, x[key])
-                res += '  + {}: {}\n'.format(key, y[key])
-        elif key in deleted_keys:
-            res += '  - {}: {}\n'.format(key, x[key])
-        elif key in added_keys:
-            res += '  + {}: {}\n'.format(key, y[key])
-
-    res += '}'
+def generate_diff(old_file, new_file):
+    diff = {}
+    intersection_keys = old_file.keys() & new_file.keys()
+    deleted_keys = old_file.keys() - new_file.keys()
+    added_keys = new_file.keys() - old_file.keys()
+    for key in added_keys:
+        diff[key] = [ADDED_KEY, new_file.get(key)]
+    for key in deleted_keys:
+        diff[key] = [DELETED_KEY, old_file.get(key)]
+    for key in intersection_keys:
+        old_value = old_file.get(key)
+        new_value = new_file.get(key)
+        has_children = isinstance(old_value, dict) and isinstance(new_value, dict)
+        if has_children and old_value != new_value:
+            diff[key] = [NESTED, generate_diff(old_value, new_value)]
+        elif old_value == new_value:
+            diff[key] = [UNCHANGED_KEY, old_file(key)]
+        else:
+            diff[key] = [CHANGED_KEY, old_file(key)]
     return res
