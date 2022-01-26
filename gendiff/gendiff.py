@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from gendiff.formatter import get_formatter
 from gendiff.status_constants import (
     ADDED,
     CHANGED,
@@ -8,7 +9,7 @@ from gendiff.status_constants import (
 )
 
 
-def generate_diff(old_file, new_file):
+def generate_diff(old_file, new_file, format='stylish'):
     diff = {}
     intersection_keys = old_file.keys() & new_file.keys()
     deleted_keys = old_file.keys() - new_file.keys()
@@ -28,4 +29,4 @@ def generate_diff(old_file, new_file):
             diff[key] = [UNCHANGED, old_value]
         else:
             diff[key] = [CHANGED, old_value, new_value]
-    return diff
+    return get_formatter(diff, format)

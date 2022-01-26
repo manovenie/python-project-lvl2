@@ -9,7 +9,7 @@ def main():
     arguments = parse_cli_args()
     first_file = prepare_file(arguments.first_file)
     second_file = prepare_file(arguments.second_file)
-    result = generate_diff(first_file, second_file)
+    result = generate_diff(first_file, second_file, arguments.format)
     print(result)
 
 
