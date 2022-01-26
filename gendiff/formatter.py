@@ -24,28 +24,23 @@ def get_formatter(diff, format):
 
 def format_stylish(diff, depth=0):
     indent = depth * DEFAULT_INDENT * ' '
-    diff = []
+    output = []
     for key, value in sorted(diff.items()):
         if instance(value, list):
             status, *rest = value
             if status == DELETED:
-                diff.append()
+                output.append(generate_string(DELETED, key, rest[0], depth + 1))
+            elif status == ADDED:
+                output.append(generate_string(ADDED, key, rest[0], depth + 1))
+            elif status == CHANGED:
+                output.append(generate_string(DELETED, key, rest[0], depth + 1))
+                output.append(generate_string(ADDED, key, rest[1], depth + 1))
+            elif status == NESTED or status == UNCHANGED:
+                output.append(generate_string(UNCHANGED, key, rest[0], depth + 1))
+        else:
+            output.append(generate_string(UNCHANGED, key, value, level + 1))
+    return '{\n' + '\n'.join(output) + '\n' + indent + '}'
 
-
-    def iter_(current_value, depth):
-        if not isinstance(current_value, dict):
-            return str(current_value)
-
-        deep_indent_size = depth + spaces_count
-        deep_indent = replacer * deep_indent_size
-        current_indent = replacer * depth
-        lines = []
-        for key, val in current_value.items():
-            lines.append(f'{deep_indent}{key}: {iter_(val, deep_indent_size)}')
-        result = itertools.chain("{", lines, [current_indent + "}"])
-        return '\n'.join(result)
-
-    return iter_(value, 0)
 
 def generate_string(flag, key, value, depth):
     indent = (level * DEFAULT_INDENT - STATUS_INDENT) * ' '
