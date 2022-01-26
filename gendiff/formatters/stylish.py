@@ -8,18 +8,12 @@ from gendiff.status_constants import (
 
 DEFAULT_INDENT = 4
 STATUS_INDENT = 2
-FORMAT_TYPES = {
-    'stylish': format_stylish,
-}
+
 FLAGS = {
         ADDED: '+',
         DELETED: '-',
         UNCHANGED: ' ',
     }
-
-def get_formatter(diff, format):
-    style = FORMAT_TYPES.get(format)
-    return style(diff)
 
 
 def format_stylish(diff, depth=0):
@@ -38,12 +32,12 @@ def format_stylish(diff, depth=0):
             elif status == NESTED or status == UNCHANGED:
                 output.append(generate_string(UNCHANGED, key, rest[0], depth + 1))
         else:
-            output.append(generate_string(UNCHANGED, key, value, level + 1))
+            output.append(generate_string(UNCHANGED, key, value, depth + 1))
     return '{\n' + '\n'.join(output) + '\n' + indent + '}'
 
 
 def generate_string(flag, key, value, depth):
-    indent = (level * DEFAULT_INDENT - STATUS_INDENT) * ' '
+    indent = (depth * DEFAULT_INDENT - STATUS_INDENT) * ' '
     if isinstance(value, dict):
         result = format_stylish(value, depth)
         return f'{indent}{FLAGS[flag]} {key}: {result}'
