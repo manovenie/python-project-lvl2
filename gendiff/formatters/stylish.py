@@ -16,24 +16,24 @@ FLAGS = {
     }
 
 
-def format_stylish(diff, depth=0):
+def format_stylish(diff, depth=0):  # noqa: C901
     indent = depth * DEFAULT_INDENT * ' '
-    output = []
+    res = []
     for key, value in sorted(diff.items()):
-        if instance(value, list):
+        if isinstance(value, list):
             status, *rest = value
             if status == DELETED:
-                output.append(generate_string(DELETED, key, rest[0], depth + 1))
+                res.append(generate_string(DELETED, key, rest[0], depth + 1))
             elif status == ADDED:
-                output.append(generate_string(ADDED, key, rest[0], depth + 1))
+                res.append(generate_string(ADDED, key, rest[0], depth + 1))
             elif status == CHANGED:
-                output.append(generate_string(DELETED, key, rest[0], depth + 1))
-                output.append(generate_string(ADDED, key, rest[1], depth + 1))
+                res.append(generate_string(DELETED, key, rest[0], depth + 1))
+                res.append(generate_string(ADDED, key, rest[1], depth + 1))
             elif status == NESTED or status == UNCHANGED:
-                output.append(generate_string(UNCHANGED, key, rest[0], depth + 1))
+                res.append(generate_string(UNCHANGED, key, rest[0], depth + 1))
         else:
-            output.append(generate_string(UNCHANGED, key, value, depth + 1))
-    return '{\n' + '\n'.join(output) + '\n' + indent + '}'
+            res.append(generate_string(UNCHANGED, key, value, depth + 1))
+    return '{\n' + '\n'.join(res) + '\n' + indent + '}'
 
 
 def generate_string(flag, key, value, depth):
