@@ -14,6 +14,7 @@ STATUSES = {
     UNCHANGED: ' '
 }
 
+
 def format_stylish(diff, depth=0):  # noqa: C901
     indent = depth * DEFAULT_INDENT * ' '
     res = []

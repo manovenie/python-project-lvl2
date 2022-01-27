@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-from gendiff.formatters.get_format import get_formatter
 from gendiff.status_constants import (
     ADDED,
     CHANGED,
