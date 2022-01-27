@@ -3,6 +3,7 @@ from gendiff.formatters.stylish import format_stylish
 
 FORMAT_TYPES = {
     'stylish': format_stylish,
+    'plain': format_plain,
 }
 
 
