@@ -48,5 +48,4 @@ def format_value(value):
         return 'null'
     elif isinstance(value, str):
         return f"'{value}'"
-    else:
-        return value
+    return value
