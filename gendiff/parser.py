@@ -23,6 +23,8 @@ def prepare_file(file_path):
 
 
 def get_format(file_path):
+    print(file_path)
+    print('step')
     file_format = os.path.splitext(file_path)[1]
     return file_format
 
@@ -39,4 +41,4 @@ def parse_file(file_format):
         '.yaml': yaml.safe_load,
         '.yml': yaml.safe_load
     }
-    return load_format[file_format.lower()]
+    return load_format[file_format]

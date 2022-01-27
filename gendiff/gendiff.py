@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+from gendiff.parser import prepare_file
+from gendiff.formatters.get_format import get_formatter
 from gendiff.status_constants import (
     ADDED,
     CHANGED,
@@ -8,7 +10,7 @@ from gendiff.status_constants import (
 )
 
 
-def generate_diff(old_file, new_file):
+def create_diff(old_file, new_file):
     diff = {}
     intersection_keys = old_file.keys() & new_file.keys()
     deleted_keys = old_file.keys() - new_file.keys()
@@ -23,9 +25,16 @@ def generate_diff(old_file, new_file):
         has_children = isinstance(old_value, dict) and\
             isinstance(new_value, dict)
         if has_children and old_value != new_value:
-            diff[key] = [NESTED, generate_diff(old_value, new_value)]
+            diff[key] = [NESTED, create_diff(old_value, new_value)]
         elif old_value == new_value:
             diff[key] = [UNCHANGED, old_value]
         else:
             diff[key] = [CHANGED, old_value, new_value]
     return diff
+
+
+def generate_diff(path_file1, path_file2, output_format='stylish'):
+    old_file = prepare_file(path_file1)
+    new_file = prepare_file(path_file2)
+    diff = create_diff(old_file, new_file)
+    return get_formatter(diff, output_format)
