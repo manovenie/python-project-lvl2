@@ -1,5 +1,6 @@
 from gendiff.gendiff import generate_diff
 from gendiff.formatters.get_format import format_stylish
+from gendiff.formatters.plain import format_plain
 from pathlib import Path
 from gendiff.parser import prepare_file
 
