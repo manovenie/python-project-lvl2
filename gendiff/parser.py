@@ -23,8 +23,6 @@ def prepare_file(file_path):
 
 
 def get_format(file_path):
-    print(file_path)
-    print('step')
     file_format = os.path.splitext(file_path)[1]
     return file_format
 
