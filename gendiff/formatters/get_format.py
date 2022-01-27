@@ -6,6 +6,6 @@ FORMAT_TYPES = {
 }
 
 
-def get_formatter(diff, format):
+def get_formatter(diff, format='stylish'):
     formatter = FORMAT_TYPES.get(format)
     return formatter(diff)

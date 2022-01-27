@@ -3,13 +3,15 @@
 from gendiff.gendiff import generate_diff
 from gendiff.parser import parse_cli_args
 from gendiff.parser import prepare_file
+from gendiff.formatters.get_format import get_formatter
 
 
 def main():
     arguments = parse_cli_args()
     first_file = prepare_file(arguments.first_file)
     second_file = prepare_file(arguments.second_file)
-    result = generate_diff(first_file, second_file, arguments.format)
+    diff = generate_diff(first_file, second_file)
+    result = get_formatter(diff, arguments.format)
     print(result)
 
 

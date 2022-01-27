@@ -3,7 +3,7 @@ from gendiff.status_constants import (
     CHANGED,
     DELETED,
     NESTED,
-    UNCHANGED,
+    UNCHANGED
 )
 
 DEFAULT_INDENT = 4
@@ -11,7 +11,7 @@ STATUS_INDENT = 2
 STATUSES = {
     ADDED: '+',
     DELETED: '-',
-    UNCHANGED: ' ',
+    UNCHANGED: ' '
 }
 
 def format_stylish(diff, depth=0):  # noqa: C901
@@ -22,11 +22,11 @@ def format_stylish(diff, depth=0):  # noqa: C901
             status, *rest = value
             if status == NESTED or status == UNCHANGED:
                 res.append(generate_string(UNCHANGED, key, rest[0], depth + 1))
-            if status == DELETED:
+            elif status == DELETED:
                 res.append(generate_string(DELETED, key, rest[0], depth + 1))
-            if status == ADDED:
+            elif status == ADDED:
                 res.append(generate_string(ADDED, key, rest[0], depth + 1))
-            if status == CHANGED:
+            elif status == CHANGED:
                 res.append(generate_string(DELETED, key, rest[0], depth + 1))
                 res.append(generate_string(ADDED, key, rest[1], depth + 1))
         else:

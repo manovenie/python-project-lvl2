@@ -9,7 +9,7 @@ from gendiff.status_constants import (
 )
 
 
-def generate_diff(old_file, new_file, format='stylish'):
+def generate_diff(old_file, new_file):
     diff = {}
     intersection_keys = old_file.keys() & new_file.keys()
     deleted_keys = old_file.keys() - new_file.keys()
@@ -23,10 +23,10 @@ def generate_diff(old_file, new_file, format='stylish'):
         new_value = new_file.get(key)
         has_children = isinstance(old_value, dict) and\
             isinstance(new_value, dict)
-        if has_children:
+        if has_children and old_value != new_value:
             diff[key] = [NESTED, generate_diff(old_value, new_value)]
         elif old_value == new_value:
             diff[key] = [UNCHANGED, old_value]
         else:
             diff[key] = [CHANGED, old_value, new_value]
-    return get_formatter(diff, format)
+    return diff
