@@ -22,7 +22,8 @@ def format_plain(diff, key_path=None):  # noqa: C901
             key_path.pop()
             continue
         elif status == ADDED:
-            res.append(ADDED_STR.format('.'.join(key_path), format_value(rest[0])))
+            res.append(ADDED_STR.format(
+                '.'.join(key_path), format_value(rest[0])))
             key_path.pop()
         elif status == DELETED:
             res.append(DELETED_STR.format('.'.join(key_path)))
@@ -31,7 +32,9 @@ def format_plain(diff, key_path=None):  # noqa: C901
             res.append(format_plain(rest[0], key_path))
             key_path.pop()
         elif status == CHANGED:
-            res.append(CHANGED_STR.format('.'.join(key_path), format_value(rest[0]), format_value(rest[1])))
+            res.append(CHANGED_STR.format(
+                '.'.join(key_path), format_value(rest[0]),
+                format_value(rest[1])))
             key_path.pop()
     return '\n'.join(res)
 
