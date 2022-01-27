@@ -1,4 +1,3 @@
-import pytest
 from gendiff.gendiff import generate_diff
 from pathlib import Path
 from gendiff.parser import prepare_file
