@@ -1,18 +1,6 @@
-import argparse
 import os
 import json
 import yaml
-
-
-def parse_cli_args():
-    parser = argparse.ArgumentParser(description='Generate diff')
-    parser.add_argument('first_file', metavar='first_file', type=str)
-    parser.add_argument('second_file', metavar='second_file', type=str)
-    parser.add_argument('-f', '--format', default='stylish',
-                        choices=['stylish', 'plain', 'json'],
-                        help='set format of output\
-                        (default: stylish)')
-    return parser.parse_args()
 
 
 def prepare_file(file_path):
