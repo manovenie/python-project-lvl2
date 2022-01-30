@@ -21,7 +21,7 @@ def create_diff(old_file, new_file):
         diff[key] = [DELETED, old_file.get(key)]
     for key in intersection_keys:
         diff[key] = create_intersection_diff(
-                    old_file.get(key), new_file.get(key))
+            old_file.get(key), new_file.get(key))
     return diff
 
 
@@ -34,7 +34,7 @@ def generate_diff(path_file1, path_file2, output_format='stylish'):
 
 def create_intersection_diff(old_value, new_value):
     has_children = isinstance(old_value, dict) and \
-                   isinstance(new_value, dict)
+            isinstance(new_value, dict)
     if has_children:
         return [NESTED, create_diff(old_value, new_value)]
     elif old_value == new_value:
