@@ -33,8 +33,7 @@ def generate_diff(path_file1, path_file2, output_format='stylish'):
 
 
 def create_intersection_diff(old_value, new_value):
-    has_children = isinstance(old_value, dict) and \
-            isinstance(new_value, dict)
+    has_children = isinstance(old_value, dict) and isinstance(new_value, dict)
     if has_children:
         return [NESTED, create_diff(old_value, new_value)]
     elif old_value == new_value:
