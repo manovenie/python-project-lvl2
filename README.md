@@ -6,9 +6,10 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/e53b3aefa8d3cbaab12d/test_coverage)](https://codeclimate.com/github/dutlov/python-project-lvl2/test_coverage)
 ### Description:
 Gendiff finds and prints difference between two .json or .yml/.yaml files. using and showing the chosen output format: 'plain', 'stylish', 'json'.
-By default the output format is 'stylish'.
+
 ### Installation:
 <code>pip install --user git+https://github.com/dutlov/python-project-lvl2.git</code>
+
 ### Usage:
 #### Calling programm:
 <code>gendiff --format path/to/file1 path/to/file2</code>
