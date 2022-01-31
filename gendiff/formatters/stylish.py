@@ -17,21 +17,22 @@ STATUSES = {
 
 def format_stylish(diff, depth=0):  # noqa: C901
     indent = depth * DEFAULT_INDENT * ' '
+    next_depth = depth + 1
     res = []
     for key, value in sorted(diff.items()):
         if isinstance(value, list):
             status, *rest = value
             if status == NESTED or status == UNCHANGED:
-                res.append(generate_string(UNCHANGED, key, rest[0], depth + 1))
+                res.append(generate_string(UNCHANGED, key, rest[0], next_depth))
             elif status == DELETED:
-                res.append(generate_string(DELETED, key, rest[0], depth + 1))
+                res.append(generate_string(DELETED, key, rest[0], next_depth))
             elif status == ADDED:
-                res.append(generate_string(ADDED, key, rest[0], depth + 1))
+                res.append(generate_string(ADDED, key, rest[0], next_depth))
             elif status == CHANGED:
-                res.append(generate_string(DELETED, key, rest[0], depth + 1))
-                res.append(generate_string(ADDED, key, rest[1], depth + 1))
+                res.append(generate_string(DELETED, key, rest[0], next_depth))
+                res.append(generate_string(ADDED, key, rest[1], next_depth))
         else:
-            res.append(generate_string(UNCHANGED, key, value, depth + 1))
+            res.append(generate_string(UNCHANGED, key, value, next_depth))
     return '{\n' + '\n'.join(res) + '\n' + indent + '}'
 
 
