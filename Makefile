@@ -1,26 +1,27 @@
-install:
+install: ## Install dependencies
 	poetry install
 
-test-coverage:
+test-coverage: ## Prepare coverage report for Codeclimate
 	poetry run pytest --cov=gendiff --cov-report xml
 
-build:
+build: ## Build a package
 	poetry build
 
-publish:
-	poetry publish --dry-run
-
-package-install:
+package-install: ## Install built package
 	python3 -m pip install --user dist/*.whl
 
-package-reinstall:
+package-reinstall: ## Reinstall built package
 	python3 -m pip install --user --force-reinstall dist/*.whl
 
-gendiff:
+gendiff: ## Run main programm
 	poetry run gendiff
 
-lint:
+lint: ## Run linter
 	poetry run flake8 gendiff
 
-test:
+test: ## Run tests
 	poetry run pytest
+
+help: ## This help message
+	@echo "Available commands:"
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
