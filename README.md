@@ -18,4 +18,4 @@ By default the output format is 'stylish'.
 #### By default the output format is 'stylish', but it can be changed with --format flag:
 <code>gendiff --format plain</code>
 #### Demo of work in asciinema:
-(gt uploaded soon)
+(going to be uploaded soon)
