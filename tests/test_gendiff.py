@@ -1,7 +1,6 @@
 import pytest
 import os
 from gendiff.gendiff import generate_diff
-from pathlib import Path
 
 
 @pytest.mark.parametrize(
