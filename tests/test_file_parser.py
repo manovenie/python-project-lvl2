@@ -6,7 +6,9 @@ from gendiff.file_parser import prepare_file
 @pytest.mark.parametrize(
     'file_path',
     [
-        ('tests/fixtures/wrong.ttt'),
+        ('tests/fixtures/wrong/wrong.ttt'),
+        ('tests/fixtures/wrong/wrong.yml'),
+        ('tests/fixtures/wrong/wrong.json'),
         ('file_not_exists'),
     ],
 )

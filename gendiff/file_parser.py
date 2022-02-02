@@ -9,6 +9,7 @@ EXT_ERROR_MSG = '{0} - invalid file extension\nUse one of: .json .yaml .yml'
 YAML_ERROR_MSG = '{0} - incorrect YAML file'
 JSON_ERROR_MSG = '{0} - incorrect JSON file'
 OS_ERROR_MSG = '{0} - file access error'
+INDEX_ERROR_MSG = '{0} - has no file extension'
 
 
 def prepare_file(file_path):
@@ -26,8 +27,7 @@ def prepare_file(file_path):
 
 
 def get_format(file_path):
-    file_format = os.path.splitext(file_path)[1]
-    return file_format
+    return os.path.splitext(file_path)[1]
 
 
 def open_file(file_path):
@@ -40,6 +40,6 @@ def parse_file(file_format):
     load_format = {
         '.json': json.loads,
         '.yaml': yaml.safe_load,
-        '.yml': yaml.safe_load
+        '.yml': yaml.safe_load,
     }
     return load_format.get(file_format)
