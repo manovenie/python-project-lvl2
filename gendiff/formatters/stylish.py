@@ -2,8 +2,7 @@ from gendiff.status_constants import (
     ADDED,
     CHANGED,
     DELETED,
-    NESTED,
-    UNCHANGED
+    UNCHANGED,
 )
 
 DEFAULT_INDENT = 4
@@ -25,12 +24,8 @@ def format_stylish(diff, depth=0):  # noqa: C901
             if status == CHANGED:
                 res.append(generate_string(DELETED, key, rest[0], next_depth))
                 res.append(generate_string(ADDED, key, rest[1], next_depth))
-            if status == DELETED:
-                res.append(generate_string(DELETED, key, rest[0], next_depth))
-            if status == ADDED:
-                res.append(generate_string(ADDED, key, rest[0], next_depth))
-            if status == NESTED or status == UNCHANGED:
-                res.append(generate_string(UNCHANGED, key, rest[0], next_depth))
+                continue
+            res.append(generate_string(status, key, rest[0], next_depth))
         else:
             res.append(generate_string(UNCHANGED, key, value, next_depth))
     return '{\n' + '\n'.join(res) + '\n' + indent + '}'
