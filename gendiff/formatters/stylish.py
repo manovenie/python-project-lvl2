@@ -25,11 +25,11 @@ def format_stylish(diff, depth=0):  # noqa: C901
             if status == CHANGED:
                 res.append(generate_string(DELETED, key, rest[0], next_depth))
                 res.append(generate_string(ADDED, key, rest[1], next_depth))
-            elif status == DELETED:
+            if status == DELETED:
                 res.append(generate_string(DELETED, key, rest[0], next_depth))
-            elif status == ADDED:
+            if status == ADDED:
                 res.append(generate_string(ADDED, key, rest[0], next_depth))
-            elif status == NESTED or status == UNCHANGED:
+            if status == NESTED or status == UNCHANGED:
                 res.append(generate_string(UNCHANGED, key, rest[0], next_depth))
         else:
             res.append(generate_string(UNCHANGED, key, value, next_depth))
