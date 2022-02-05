@@ -10,10 +10,8 @@ DELETED_STR = "Property '{0}' was removed"
 CHANGED_STR = "Property '{0}' was updated. From {1} to {2}"
 
 
-def format_plain(diff, key_path=None):  # noqa: C901
+def format_plain(diff, key_path=[]):  # noqa: C901
     res = []
-    if not key_path:
-        key_path = []
     for diff_key, diff_value in sorted(diff.items()):
         key_path.append(diff_key)
         status, rest = diff_value[0], diff_value[1:]
