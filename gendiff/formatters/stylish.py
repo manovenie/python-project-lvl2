@@ -11,7 +11,8 @@ STATUS_INDENT = 2
 STATUSES = {
     ADDED: '+',
     DELETED: '-',
-    UNCHANGED: ' '
+    UNCHANGED: ' ',
+    NESTED: ' ',
 }
 
 
@@ -26,8 +27,6 @@ def format_stylish(diff, depth=0):  # noqa: C901
                 res.append(generate_string(DELETED, key, rest[0], next_depth))
                 res.append(generate_string(ADDED, key, rest[1], next_depth))
                 continue
-            if status == NESTED:
-                status = UNCHANGED
             res.append(generate_string(status, key, rest[0], next_depth))
         else:
             res.append(generate_string(UNCHANGED, key, value, next_depth))
