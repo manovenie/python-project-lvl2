@@ -18,7 +18,7 @@ def format_plain(diff, key_path=None):  # noqa: C901
         key_path.append(diff_key)
         status, rest = diff_value[0], diff_value[1:]
         value = rest[0]
-        formatted_value = format_value(rest[0])
+        formatted_value = format_value(value)
         if status == CHANGED:
             updated_value = rest[1]
             formatted_updated_value = format_value(updated_value)
