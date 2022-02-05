@@ -14,20 +14,23 @@ def format_plain(diff, key_path=None):  # noqa: C901
     res = []
     if not key_path:
         key_path = []
-    for key, value in sorted(diff.items()):
-        key_path.append(key)
-        status, rest = value[0], value[1:]
+    for diff_key, diff_value in sorted(diff.items()):
+        key_path.append(diff_key)
+        status, rest = diff_value[0], diff_value[1:]
+        value = rest[0]
+        formatted_value = format_value(rest[0])
         if status == CHANGED:
+            updated_value = rest[1]
+            formatted_updated_value = format_value(updated_value)
             res.append(CHANGED_STR.format(
-                '.'.join(key_path), format_value(rest[0]),
-                format_value(rest[1])))
-        elif status == ADDED:
+                '.'.join(key_path), formatted_value, formatted_updated_value))
+        if status == ADDED:
             res.append(ADDED_STR.format(
-                '.'.join(key_path), format_value(rest[0])))
-        elif status == DELETED:
+                '.'.join(key_path), formatted_value))
+        if status == DELETED:
             res.append(DELETED_STR.format('.'.join(key_path)))
-        elif status == NESTED:
-            res.append(format_plain(rest[0], key_path))
+        if status == NESTED:
+            res.append(format_plain(value, key_path))
         key_path.pop()
     return '\n'.join(res)
 
