@@ -36,10 +36,10 @@ def format_plain(diff, key_path=[]):  # noqa: C901
 def format_value(value):
     if type(value) in (list, dict):
         value = '[complex value]'
-    if isinstance(value, bool):
+    elif isinstance(value, bool):
         value = str(value).lower()
-    if value is None:
+    elif value is None:
         value = 'null'
-    if isinstance(value, str):
+    elif isinstance(value, str):
         value = f"'{value}'"
     return value
