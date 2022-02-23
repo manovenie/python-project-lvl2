@@ -19,4 +19,4 @@ Gendiff finds and prints difference between two .json or .yml/.yaml files. using
 #### By default the output format is 'stylish', but it can be changed with --format flag:
 <code>gendiff --format plain</code>
 #### Demo of work in asciinema:
-(going to be uploaded soon)
+[![asciicast](https://asciinema.org/a/54eHSk3l7Ta2AtJ3HnGQqT3jW.svg)](https://asciinema.org/a/54eHSk3l7Ta2AtJ3HnGQqT3jW)
