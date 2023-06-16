@@ -1,18 +1,12 @@
-from gendiff.status_constants import (
-    ADDED,
-    CHANGED,
-    DELETED,
-    NESTED,
-    UNCHANGED
-)
+from gendiff.status_constants import Status
 
 DEFAULT_INDENT = 4
 STATUS_INDENT = 2
 STATUSES = {
-    ADDED: '+',
-    DELETED: '-',
-    UNCHANGED: ' ',
-    NESTED: ' ',
+    'added': '+',
+    'deleted': '-',
+    'unchanged': ' ',
+    'nested': ' ',
 }
 
 
@@ -23,13 +17,13 @@ def format_stylish(diff, depth=0):  # noqa: C901
     for key, value in sorted(diff.items()):
         if isinstance(value, list):
             status, *rest = value
-            if status == CHANGED:
-                res.append(generate_string(DELETED, key, rest[0], next_depth))
-                res.append(generate_string(ADDED, key, rest[1], next_depth))
+            if status == Status.CHANGED.value:
+                res.append(generate_string(Status.DELETED.value, key, rest[0], next_depth))
+                res.append(generate_string(Status.ADDED.value, key, rest[1], next_depth))
                 continue
             res.append(generate_string(status, key, rest[0], next_depth))
             continue
-        res.append(generate_string(UNCHANGED, key, value, next_depth))
+        res.append(generate_string(Status.UNCHANGED.value, key, value, next_depth))
     return '{\n' + '\n'.join(res) + '\n' + indent + '}'
 
 
