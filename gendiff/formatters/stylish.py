@@ -18,12 +18,12 @@ def format_stylish(diff, depth=0):  # noqa: C901
         if isinstance(value, list):
             status, *rest = value
             if status == Status.CHANGED.value:
-                res.append(generate_string(Status.DELETED.value, key, rest[0], next_depth))
-                res.append(generate_string(Status.ADDED.value, key, rest[1], next_depth))
+                res.append(generate_string('deleted', key, rest[0], next_depth))
+                res.append(generate_string('added', key, rest[1], next_depth))
                 continue
             res.append(generate_string(status, key, rest[0], next_depth))
             continue
-        res.append(generate_string(Status.UNCHANGED.value, key, value, next_depth))
+        res.append(generate_string('unchanged', key, value, next_depth))
     return '{\n' + '\n'.join(res) + '\n' + indent + '}'
 
 
