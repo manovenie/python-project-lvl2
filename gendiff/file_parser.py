@@ -1,9 +1,9 @@
-import os
 import json
-import yaml
+import os
 from json.decoder import JSONDecodeError
-from yaml.scanner import ScannerError
 
+import yaml
+from yaml.scanner import ScannerError
 
 YAML_ERROR_MSG = '{0} - incorrect YAML file'
 JSON_ERROR_MSG = '{0} - incorrect JSON file'

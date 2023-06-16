@@ -1,7 +1,6 @@
-from gendiff.formatters.stylish import format_stylish
-from gendiff.formatters.plain import format_plain
 from gendiff.formatters.json import format_json
-
+from gendiff.formatters.plain import format_plain
+from gendiff.formatters.stylish import format_stylish
 
 FORMAT_TYPES = {
     'stylish': format_stylish,

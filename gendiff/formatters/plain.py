@@ -1,6 +1,5 @@
 from gendiff.status_constants import Status
 
-
 ADDED_STR = "Property '{0}' was added with value: {1}"
 DELETED_STR = "Property '{0}' was removed"
 CHANGED_STR = "Property '{0}' was updated. From {1} to {2}"

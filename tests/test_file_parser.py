@@ -1,5 +1,4 @@
 import pytest
-
 from gendiff.file_parser import prepare_file
 
 
