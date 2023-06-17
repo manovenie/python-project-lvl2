@@ -17,7 +17,6 @@ from gendiff.gendiff import generate_diff
          'tests/fixtures/result_stylish.txt'),
     ],
 )
-
 def test_generate_diff(style, file_before, file_after, file_result):
     with open(os.path.abspath(file_result)) as f:
         result = f.read()
